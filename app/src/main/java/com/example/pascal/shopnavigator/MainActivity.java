@@ -14,7 +14,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends SceneParent implements View.OnClickListener {
 
     Spinner items;
     ArrayList<String> shops = new ArrayList<String>();
@@ -47,33 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button1.setOnClickListener(this);
     }
 
-    //Menu uppper left corner
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    //Items of Menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.settings:
-                //settings
-                Intent settings = new Intent(this, SettingsActivity.class);
-                startActivity(settings);
-                break;
-            case R.id.contact:
-                //contact
-                Intent contact = new Intent(this, ContactActivity.class);
-                startActivity(contact);
-                break;
-            default:
-                //unknown error
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void onClick(View v) {
         Intent intent = new Intent(MainActivity.this, ShoppingBag.class);

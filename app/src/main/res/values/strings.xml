@@ -7,6 +7,9 @@
     <string name="button_to_bag">Insert Shopping List</string>
     <string name="go_shopping_btn">Start</string>
 
+    <!--Contact page-->
+
+    <string name="contact_1">Contacts...</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->

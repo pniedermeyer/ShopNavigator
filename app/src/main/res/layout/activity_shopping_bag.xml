@@ -21,17 +21,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="148dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/go_shop_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shop_navigator_background" />
-
 </android.support.constraint.ConstraintLayout>
