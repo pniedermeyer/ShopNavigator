@@ -54,4 +54,9 @@ public class MainActivity extends SceneParent implements View.OnClickListener {
         startActivity(intent);
     }
 
+    public void go_test_btn(View v) {
+        Intent intent = new Intent(MainActivity.this, Test.class);
+        startActivity(intent);
+    }
+
 }

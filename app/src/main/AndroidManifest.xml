@@ -22,7 +22,8 @@
         <activity android:name=".ShoppingBag" />
         <activity android:name=".ContactActivity" />
         <activity android:name=".RouteActivity" />
-        <activity android:name=".ListView"></activity>
+        <activity android:name=".ListView" />
+        <activity android:name=".Test"></activity>
     </application>
 
 </manifest>
