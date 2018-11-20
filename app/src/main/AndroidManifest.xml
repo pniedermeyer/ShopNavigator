@@ -20,7 +20,8 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity android:name=".ShoppingBag" />
-        <activity android:name=".ContactActivity"></activity>
+        <activity android:name=".ContactActivity" />
+        <activity android:name=".RouteActivity"></activity>
     </application>
 
 </manifest>

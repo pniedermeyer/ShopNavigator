@@ -7,8 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class ShoppingBag extends SceneParent {
+public class ShoppingBag extends SceneParent implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,17 @@ public class ShoppingBag extends SceneParent {
         //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_bar);
         setSupportActionBar(toolbar);
+
+
+        //Button to next View
+        Button button1 = (Button) findViewById(R.id.go_shop_btn);
+        button1.setOnClickListener((View.OnClickListener) this);
+
+    }
+
+    public void onClick(View v) {
+        Intent intent = new Intent(ShoppingBag.this, RouteActivity.class);
+        startActivity(intent);
     }
 
 }

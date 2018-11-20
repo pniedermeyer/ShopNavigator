@@ -15,7 +15,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "StudentName";
 
     //initialize the database
-    public MyDBHandler(Context context, Stringname, SQLiteDatabase.CursorFactoryfactory, intversion) {
+    public MyDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
