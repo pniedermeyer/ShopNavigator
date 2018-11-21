@@ -8,18 +8,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class ShoppingBag extends SceneParent implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ShoppingBag extends SceneParent implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     // Array of strings...
     ListView simpleList;
-    String countryList[] = {"Salt", "Apples", "Sugar", "Bread", "Milk"};
+    String shoppingArray[] = {"Salt", "Apples", "Sugar", "Bread", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk"};
+    List<String> shoppingList = new ArrayList<String>(Arrays.asList(shoppingArray));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +40,43 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener{
         setSupportActionBar(toolbar);
 
 
-        //Button to next View
-        Button button1 = (Button) findViewById(R.id.go_shop_btn);
-        button1.setOnClickListener((View.OnClickListener) this);
-
         simpleList = (ListView)findViewById(R.id.simpleListView);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, countryList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, shoppingList);
         simpleList.setAdapter(arrayAdapter);
 
+        simpleList.setOnItemClickListener(this);
+
+        //AutoCompleteItems
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingArray);
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        textView.setAdapter(adapter);
+
     }
 
-    public void onClick(View v) {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        TextView temp=(TextView) view;
+        String Value = simpleList.getItemAtPosition(position).toString();
+
+        Toast.makeText(getApplicationContext(), Value, Toast.LENGTH_SHORT).show();
+    }
+
+    public void goMap(View v) {
         Intent intent = new Intent(ShoppingBag.this, RouteActivity.class);
         startActivity(intent);
+
+
     }
 
+    public void addItem(View v){
+        AutoCompleteTextView source = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+
+        shoppingList.add((String) source.getText().toString());
+        simpleList.invalidateViews();
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getApplicationContext(), "Yasd", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Test extends Activity implements AdapterView.OnItemClickListener{
 
@@ -61,7 +62,7 @@ public class Test extends Activity implements AdapterView.OnItemClickListener{
     ListView simpleList;
     String countryList[] = {"Salt", "Apples", "Sugar", "Bread", "Milk"};
 
-    ArrayList<String> groceries = new ArrayList<String>();
+    ArrayList<String> groceries = new ArrayList<String>(Arrays.asList(COUNTRIES));
 
 
 
