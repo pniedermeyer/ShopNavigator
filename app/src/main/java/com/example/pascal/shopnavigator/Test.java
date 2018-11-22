@@ -1,13 +1,19 @@
 package com.example.pascal.shopnavigator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.ArrayList;
@@ -20,6 +26,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 import org.w3c.dom.Text;
@@ -52,6 +68,9 @@ public class Test extends Activity implements AdapterView.OnItemClickListener{
         //ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.activity_list_item,groceries);
         //list.setAdapter(adapter3);
         simpleList.setOnItemClickListener(this);
+
+
+
     }
 
     private static final String[] COUNTRIES = new String[] {
@@ -95,4 +114,26 @@ public class Test extends Activity implements AdapterView.OnItemClickListener{
         TextView asdf= (TextView) findViewById(R.id.textView3);
         asdf.setText("asfas");
     }
+
+    private PopupWindow pw;
+    public void showPopup(View v) {
+        try {
+//             We need to get the instance of the LayoutInflater
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.popup,(ViewGroup) findViewById(R.id.popup_1));
+            pw = new PopupWindow(layout, (ViewGroup.LayoutParams.WRAP_CONTENT), (ViewGroup.LayoutParams.WRAP_CONTENT), true);
+            pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+//            Close = (Button) layout.findViewById(R.id.button3);
+//            Close.setOnClickListener(cancel_button);
+//        Toast.makeText(getApplicationContext(), "Yasd", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    private OnClickListener cancel_button = new OnClickListener() {
+//        public void onClick(View v) {
+//            pw.dismiss();
+//        }
+//    };
 }
