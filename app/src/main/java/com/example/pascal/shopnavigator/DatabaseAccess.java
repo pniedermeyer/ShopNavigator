@@ -58,7 +58,7 @@ public class DatabaseAccess {
      */
     public List<String> getProducts() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT name * FROM products", null);
+        Cursor cursor = database.rawQuery("SELECT name FROM products", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));

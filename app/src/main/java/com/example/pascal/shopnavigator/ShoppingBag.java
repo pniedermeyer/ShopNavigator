@@ -27,7 +27,7 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
 
     // Array of strings...
     ListView simpleList;
-    String shoppingArray[] = {};
+    //String shoppingArray[] = {};
     List<String> shoppingList = new ArrayList<String>();
 
 
@@ -52,11 +52,11 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
             databaseAccess.close();
 
             //Adapter for List
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, products);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingList);
             this.simpleList.setAdapter(adapter);
 
             //AutoCompleteItems
-            ArrayAdapter<String> AutoOmpleteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingArray);
+            ArrayAdapter<String> AutoOmpleteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, products);
             AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
             textView.setAdapter(AutoOmpleteAdapter);
 
