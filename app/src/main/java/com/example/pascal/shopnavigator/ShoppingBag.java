@@ -27,29 +27,38 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
 
     // Array of strings...
     ListView simpleList;
-    String shoppingArray[] = {"Salt", "Apples", "Sugar", "Bread", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk", "Milk"};
-    List<String> shoppingList = new ArrayList<String>(Arrays.asList(shoppingArray));
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_bag);
-
-        //Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_bar);
-        setSupportActionBar(toolbar);
+    String shoppingArray[] = {};
+    List<String> shoppingList = new ArrayList<String>();
 
 
-        simpleList = (ListView)findViewById(R.id.simpleListView);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, shoppingList);
-        simpleList.setAdapter(arrayAdapter);
 
-        simpleList.setOnItemClickListener(this);
+        //_________________________________________________________
 
-        //AutoCompleteItems
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingArray);
-        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        textView.setAdapter(adapter);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_shopping_bag);
+
+            //Toolbar
+            Toolbar toolbar = (Toolbar) findViewById(R.id.activity_bar);
+            setSupportActionBar(toolbar);
+
+            this.simpleList = (ListView) findViewById(R.id.simpleListView);
+
+            //Database connection
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            List<String> products = databaseAccess.getProducts();
+            databaseAccess.close();
+
+            //Adapter for List
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, products);
+            this.simpleList.setAdapter(adapter);
+
+            //AutoCompleteItems
+            ArrayAdapter<String> AutoOmpleteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingArray);
+            AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+            textView.setAdapter(AutoOmpleteAdapter);
 
     }
 
