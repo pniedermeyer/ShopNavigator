@@ -5,7 +5,7 @@ public class Routing {
     public static int [][] calculateDistance (int [][] gridPosition) {
 
         // Variables
-        int [][] shortestPath = new int [11][2];
+        int [][] shortestPath = new int [gridPosition.length][2];
         int totalDistance = 1000;
         int temp = 0;
         int current = 0;
