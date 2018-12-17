@@ -4,12 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RouteActivity extends SceneParent {
 
     ArrayList<String> shoppingList;
+
+    String [][] products;
 
 
     @Override
@@ -20,10 +24,18 @@ public class RouteActivity extends SceneParent {
 
         shoppingList = (ArrayList<String>) getIntent().getSerializableExtra("shoppingList");
 
-        //Adapter for List
-        ListView testList = (ListView) findViewById(R.id.testList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingList);
-        testList.setAdapter(adapter);
+        //Database connection
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        products = databaseAccess.getCoordinates(shoppingList);
+        databaseAccess.close();
+
+
+        //Text View
+        TextView helloTextView = (TextView) findViewById(R.id.textView4);
+        helloTextView.setText(Arrays.deepToString(products));
+
+
 
 
     }

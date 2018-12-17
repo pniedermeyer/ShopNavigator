@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,5 +67,21 @@ public class DatabaseAccess {
         }
         cursor.close();
         return list;
+    }
+
+    public String[][] getCoordinates(List<String> shoppingBag) {
+        String[][] arr = new String[shoppingBag.size()][3];
+        for(int i = 0; i < shoppingBag.size(); i++) {
+            Cursor cursor = database.rawQuery("SELECT * FROM products WHERE name='" + shoppingBag.get(i) + "'", null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                arr[i][0] = cursor.getString(1);
+                arr[i][1] = cursor.getString(2);
+                arr[i][2] = cursor.getString(0);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return arr;
     }
 }
