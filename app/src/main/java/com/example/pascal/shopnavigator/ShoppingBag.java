@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +28,12 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
 
     // Array of strings...
     ListView simpleList;
-    //String shoppingArray[] = {};
+
+    //List of the Items in the shopping Cart
     List<String> shoppingList = new ArrayList<String>();
+
+    //Items out of the database
+    List<String> products;
 
 
 
@@ -43,15 +48,16 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
             Toolbar toolbar = (Toolbar) findViewById(R.id.activity_bar);
             setSupportActionBar(toolbar);
 
-            this.simpleList = (ListView) findViewById(R.id.simpleListView);
+
 
             //Database connection
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
             databaseAccess.open();
-            List<String> products = databaseAccess.getProducts();
+            products = databaseAccess.getProducts();
             databaseAccess.close();
 
             //Adapter for List
+            this.simpleList = (ListView) findViewById(R.id.simpleListView);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, shoppingList);
             this.simpleList.setAdapter(adapter);
 
@@ -72,6 +78,7 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
 
     public void goMap(View v) {
         Intent intent = new Intent(ShoppingBag.this, RouteActivity.class);
+        intent.putExtra("shoppingList", (Serializable) shoppingList);
         startActivity(intent);
 
 
@@ -80,8 +87,13 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
     public void addItem(View v){
         AutoCompleteTextView source = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
-        shoppingList.add((String) source.getText().toString());
-        simpleList.invalidateViews();
+        if (products.contains(source.getText().toString())){
+            shoppingList.add((String) source.getText().toString());
+            simpleList.invalidateViews();
+        }else{
+            Toast.makeText(getApplicationContext(),R.string.item_not_available, Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

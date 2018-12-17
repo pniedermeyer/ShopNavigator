@@ -6,6 +6,7 @@
     <string name="main_txt">Your shop:</string>
     <string name="button_to_bag">Insert Shopping List</string>
     <string name="go_shopping_btn">Start</string>
+    <string name="item_not_available">Item isn\'t available</string>
 
     <!--Contact page-->
 
