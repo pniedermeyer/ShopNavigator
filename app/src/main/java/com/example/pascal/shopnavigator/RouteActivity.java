@@ -22,6 +22,7 @@ public class RouteActivity extends SceneParent {
     ArrayList<String> shoppingList;
 
     String [][] products;
+    int[][] coordinatesOfProducts;
 
     //Test Canvas
     private Canvas mCanvas;
@@ -37,7 +38,6 @@ public class RouteActivity extends SceneParent {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
-
 
         shoppingList = (ArrayList<String>) getIntent().getSerializableExtra("shoppingList");
 
@@ -60,33 +60,44 @@ public class RouteActivity extends SceneParent {
         mPaintText.setTextSize(70);
         mImageView = (ImageView) findViewById(R.id.imageView2);
 
-        //Convert Products from String to and sort them.
-        int [][] coordinatesOfProducts = new int [products.length][2];
+
+        //Convert Products from String to int and sort them.
+        coordinatesOfProducts = new int[products.length][2];
         for (int i = 0; i < products.length; i++) {
             coordinatesOfProducts[i][0] = Integer.valueOf(products[i][0]);
             coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
         }
-
         coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
 
-        MyCanvas myCanvas;
-        myCanvas = new MyCanvas(this);
-        myCanvas.setBackgroundColor(Color.TRANSPARENT);
-        //setContentView(myCanvas);
+
+        //Get view and draw on it
+        //View shopView;
+
+        //DrawOnScreen drawRoutre = new DrawOnScreen();
+        //drawRoutre.startDrawing(coordinatesOfProducts, mImageView);
+    }
 
 
 
     public void drawSomething(View view) {
-        int vWidth = view.getWidth();
-        int vHeight = view.getHeight();
+       // int vWidth = view.getWidth();
+       // int vHeight = view.getHeight();
 
-        mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
-        mImageView.setImageBitmap(mBitmap);
-        mCanvas = new Canvas(mBitmap);
-        mCanvas.drawText("Text", 100, 300, mPaintText);
+        DrawOnScreen drawRoutre = new DrawOnScreen();
+        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
 
-        view.invalidate();
+     //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
+     //   mImageView.setImageBitmap(mBitmap);
+     //   mCanvas = new Canvas(mBitmap);
+     //   mPaint.setStrokeWidth(20);
+     //   mPaint.setColor(
+     //           ResourcesCompat.getColor(getResources(),
+     //                   R.color.red, null)
+     //   );
+     //   mCanvas.drawText("Text", 100, 300, mPaintText);
+     //   mCanvas.drawLine(190, 1070, 190, 990, mPaint);
 
+     //   view.invalidate();
     }
 
 }

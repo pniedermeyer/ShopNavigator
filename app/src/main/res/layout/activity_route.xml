@@ -28,7 +28,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/shop_navigator_background"
-        android:onClick="drawSomething"/>
+        android:onClick="drawSomething"
+        />
+
 
     <ImageView
         android:id="@+id/imageView2"
