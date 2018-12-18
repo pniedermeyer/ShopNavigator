@@ -2,6 +2,7 @@ package com.example.pascal.shopnavigator;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.content.res.ResourcesCompat;
@@ -58,7 +59,22 @@ public class RouteActivity extends SceneParent {
         );
         mPaintText.setTextSize(70);
         mImageView = (ImageView) findViewById(R.id.imageView2);
-    }
+
+        //Convert Products from String to and sort them.
+        int [][] coordinatesOfProducts = new int [products.length][2];
+        for (int i = 0; i < products.length; i++) {
+            coordinatesOfProducts[i][0] = Integer.valueOf(products[i][0]);
+            coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
+        }
+
+        coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
+
+        MyCanvas myCanvas;
+        myCanvas = new MyCanvas(this);
+        myCanvas.setBackgroundColor(Color.TRANSPARENT);
+        //setContentView(myCanvas);
+
+
 
     public void drawSomething(View view) {
         int vWidth = view.getWidth();
