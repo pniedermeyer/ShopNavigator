@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RouteActivity extends SceneParent {
+public class RouteActivity extends SceneParent{
 
     ArrayList<String> shoppingList;
 
@@ -47,6 +47,13 @@ public class RouteActivity extends SceneParent {
         products = databaseAccess.getCoordinates(shoppingList);
         databaseAccess.close();
 
+        ImageView img = (ImageView) findViewById( R.id.imageView);
+        ImageView img2 = (ImageView) findViewById( R.id.imageView2);
+
+        img.requestLayout();
+        img2.requestLayout();
+        img2.getLayoutParams().width = img.getLayoutParams().width;
+
 
         //Text View
         TextView helloTextView = (TextView) findViewById(R.id.textView4);
@@ -58,7 +65,7 @@ public class RouteActivity extends SceneParent {
                         R.color.colorAccent, null)
         );
         mPaintText.setTextSize(70);
-        mImageView = (ImageView) findViewById(R.id.imageView2);
+        mImageView = (ImageView) findViewById( R.id.imageView2);
 
         //Convert Products from String to and sort them.
         int [][] coordinatesOfProducts = new int [products.length][2];
@@ -66,12 +73,13 @@ public class RouteActivity extends SceneParent {
             coordinatesOfProducts[i][0] = Integer.valueOf(products[i][0]);
             coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
         }
+    }
 
-        coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
+        //coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
 
-        MyCanvas myCanvas;
-        myCanvas = new MyCanvas(this);
-        myCanvas.setBackgroundColor(Color.TRANSPARENT);
+        //MyCanvas myCanvas;
+        //myCanvas = new MyCanvas(this);
+        //myCanvas.setBackgroundColor(Color.TRANSPARENT);
         //setContentView(myCanvas);
 
 
