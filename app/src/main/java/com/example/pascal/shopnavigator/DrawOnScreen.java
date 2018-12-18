@@ -12,9 +12,11 @@ public class DrawOnScreen extends View {
     Canvas canvas = new Canvas();
 
 
-    public DrawOnScreen(Context context) {
+    public DrawOnScreen(Context context, int [][] shortestPath) {
         super(context);
         paint.setColor(Color.RED);
+        setPoints();
+        PrepareRoute(shortestPath);
     }
 
 
@@ -38,7 +40,6 @@ public class DrawOnScreen extends View {
 
 
     public void PrepareRoute(int [][] shortestPath) {
-        setPoints();
         int [][] destinationCheckpoint = new int [1][2];
         int nextX = 0, nextY = 0, stopX = 0, stopY = 0, startX = 0, startY = 0;
 
