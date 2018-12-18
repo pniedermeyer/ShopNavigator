@@ -88,8 +88,12 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
         AutoCompleteTextView source = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
         if (products.contains(source.getText().toString())){
-            shoppingList.add((String) source.getText().toString());
-            simpleList.invalidateViews();
+            if(shoppingList.contains(source.getText().toString())){
+                Toast.makeText(getApplicationContext(),R.string.item_not_available, Toast.LENGTH_SHORT).show();
+            }else {
+                shoppingList.add((String) source.getText().toString());
+                simpleList.invalidateViews();
+            }
         }else{
             Toast.makeText(getApplicationContext(),R.string.item_not_available, Toast.LENGTH_SHORT).show();
         }
