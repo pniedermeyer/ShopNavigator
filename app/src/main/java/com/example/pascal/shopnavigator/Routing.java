@@ -10,8 +10,8 @@ public class Routing {
         int temp = 0;
         int current = 0;
         int marker = 0;
-        final int entranceX = 0;
-        final int entranceY = 0;
+        final int entranceX = 100;
+        final int entranceY = 100;
         final int cashiersX = 110;
         final int cashiersY = 5;
 
