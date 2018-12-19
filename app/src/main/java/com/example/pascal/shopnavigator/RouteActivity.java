@@ -32,6 +32,7 @@ public class RouteActivity extends SceneParent {
     private Paint mPaintText = new Paint(Paint.UNDERLINE_TEXT_FLAG);
     private Bitmap mBitmap;
     private ImageView mImageView;
+    int width = 0, height = 0;
 
     private int once = 0;
 
@@ -98,11 +99,7 @@ public class RouteActivity extends SceneParent {
             if(once == 0) {
                 once = 1;
                 View view = (View) findViewById(R.id.imageView2);
-//                View im = (View) findViewById(R.id.imageView);
-//                System.out.println("_--------");
-//                System.out.println(view.getHeight() + " | " + view.getWidth());
-//                System.out.println(im.getHeight() + " | " + im.getWidth());
-
+//
 
                 DrawOnScreen drawRoutre = new DrawOnScreen();
                 drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
@@ -119,7 +116,7 @@ public class RouteActivity extends SceneParent {
         System.out.println (im.getHeight() + " | " + im.getWidth());
 
         DrawOnScreen drawRoutre = new DrawOnScreen();
-        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
+        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
 
         //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
         //   mImageView.setImageBitmap(mBitmap);
@@ -134,4 +131,5 @@ public class RouteActivity extends SceneParent {
 
         //   view.invalidate();
     }
+
 }
