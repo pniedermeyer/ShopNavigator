@@ -131,9 +131,9 @@ public class Test extends Activity implements AdapterView.OnItemClickListener{
         }
     }
 
-//    private OnClickListener cancel_button = new OnClickListener() {
-//        public void onClick(View v) {
-//            pw.dismiss();
-//        }
-//    };
+    public void cancel_button (View view) {
+
+            pw.dismiss();
+
+    };
 }
