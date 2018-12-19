@@ -23,11 +23,21 @@ public class DrawOnScreen extends SceneParent{
     public void setPoints() {
         int temp = 0;
         // Shelf points;
-        rowOfPoints(84,0,0,1);
-        rowOfPoints(78,1,8,1);
-        rowOfPoints(25,9,16,1);
-        rowOfPoints(20,17,20,1);
-        rowOfPoints(15,21,25,4);
+        rowOfPoints(84,0,11);
+
+        rowOfPoints(78,1,11);
+       // rowOfPoints(78,2,24);
+       // rowOfPoints(78,3,10);
+
+        //rowOfPoints(42,9,11);
+       // rowOfPoints(42,9,24);
+       // rowOfPoints(42,11,10);
+
+      //  rowOfPoints(25,17,11);
+      //  rowOfPoints(25,17,24);
+      //  rowOfPoints(25,19,10);
+      //  rowOfPoints(22,21,10);
+
 
         for (int i = 0; i < checkPoints.length; i++) {
             // System.out.println(shortestPath[i][0] + " Befire "+ shortestPath[i][1]);
@@ -37,15 +47,13 @@ public class DrawOnScreen extends SceneParent{
             temp = ((height / 100) * checkPoints[i][1]);
             checkPoints[i][1] = (int) temp;
         }
+        DrawLine(checkPoints[0][0], checkPoints[0][1], checkPoints[1][0], checkPoints[1][1]);
     }
 
     //Symatically build checkpoints
-    public void rowOfPoints(int y, int start, int stop, int multiplier) {
-        for (int i = start; i <= stop; i++) {
-            checkPoints[i][0] = 11*multiplier;
+    public void rowOfPoints(int y, int i, int x) {
+            checkPoints[i][0] = x;
             checkPoints[i][1] = y;
-            multiplier++;
-        }
     }
 
 
@@ -62,7 +70,7 @@ public class DrawOnScreen extends SceneParent{
        // DrawLine(0,0,2,2);
         this.shortestPath = shortestPath;
         setPoints();
-        PrepareRoute();
+       // PrepareRoute();
 
         shopView.invalidate();
     }
