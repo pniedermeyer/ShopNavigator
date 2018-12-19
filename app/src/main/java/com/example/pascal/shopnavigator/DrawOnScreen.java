@@ -42,14 +42,13 @@ public class DrawOnScreen extends SceneParent{
         int vWidth = shopView.getWidth();
         int vHeight = shopView.getHeight();
 
-        System.out.println(vWidth +" "+vHeight);
         mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
         mImageView.setImageBitmap(mBitmap);
         canvas = new Canvas(mBitmap);
         paint.setStrokeWidth(20);
         paint.setColor(Color.RED);
         DrawLine(0,0,2,2);
-        shopView.invalidate();
+
         PrepareRoute(shortestPath);
 
         shopView.invalidate();
@@ -65,14 +64,15 @@ public class DrawOnScreen extends SceneParent{
         startX = checkPoints[1][0];
         startY = checkPoints[1][1];
 
-        for (int i = 2; i < shortestPath.length-1; i++) {
+        for (int i = 1; i < shortestPath.length-1; i++) {
             nextX = shortestPath[i][0];
             nextY = shortestPath[i][1];
             destinationCheckpoint = findClosestCheckpoint(nextX, nextY);
-            DrawLine(startX, startY, destinationCheckpoint[i][0], startY);
-            DrawLine(destinationCheckpoint[i][0], startY, destinationCheckpoint[i][0], destinationCheckpoint[i][1]);
-            startX = destinationCheckpoint[i][0];
-            startY = destinationCheckpoint[i][1];
+            System.out.println(nextX + " "+ nextY);
+            DrawLine(startX, startY, destinationCheckpoint[0][0], startY);
+            DrawLine(destinationCheckpoint[0][0], startY, destinationCheckpoint[0][0], destinationCheckpoint[0][1]);
+            startX = destinationCheckpoint[0][0];
+            startY = destinationCheckpoint[0][1];
         }
     }
 
