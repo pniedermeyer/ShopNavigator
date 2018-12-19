@@ -102,30 +102,4 @@ public class RouteActivity extends SceneParent {
             Intent intent = new Intent(RouteActivity.this, MainActivity.class);
             startActivity(intent);
     }
-
-    public void drawSomething(View view) {
-        // int vWidth = view.getWidth();
-        // int vHeight = view.getHeight();
-   //     View im = (View) findViewById(R.id.imageView);
-
-    //    System.out.println (view.getHeight() + " | " + view.getWidth());
-     //   System.out.println (im.getHeight() + " | " + im.getWidth());
-
-     //   DrawOnScreen drawRoutre = new DrawOnScreen();
-     //   drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
-
-        //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
-        //   mImageView.setImageBitmap(mBitmap);
-        //   mCanvas = new Canvas(mBitmap);
-        //   mPaint.setStrokeWidth(20);
-        //   mPaint.setColor(
-        //           ResourcesCompat.getColor(getResources(),
-        //                   R.color.red, null)
-        //   );
-        //   mCanvas.drawText("Text", 100, 300, mPaintText);
-        //   mCanvas.drawLine(190, 1070, 190, 990, mPaint);
-
-        //   view.invalidate();
-    }
-
 }
