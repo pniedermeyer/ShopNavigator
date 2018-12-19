@@ -30,12 +30,14 @@ public class RouteActivity extends SceneParent {
     private Paint mPaintText = new Paint(Paint.UNDERLINE_TEXT_FLAG);
     private Bitmap mBitmap;
     private ImageView mImageView;
+    int width = 0, height = 0;
 
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
 
@@ -49,6 +51,9 @@ public class RouteActivity extends SceneParent {
 
         ImageView img = (ImageView) findViewById( R.id.imageView);
         ImageView img2 = (ImageView) findViewById( R.id.imageView2);
+
+        width = img2.getLayoutParams().width;
+        height = img2.getLayoutParams().height;
 
         img.requestLayout();
         img2.requestLayout();
@@ -67,15 +72,14 @@ public class RouteActivity extends SceneParent {
         mPaintText.setTextSize(70);
         mImageView = (ImageView) findViewById( R.id.imageView2);
 
-
         //Convert Products from String to int and sort them.
         coordinatesOfProducts = new int[products.length][2];
         for (int i = 0; i < products.length; i++) {
+
             coordinatesOfProducts[i][0] = Integer.valueOf(products[i][0]);
             coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
         }
         coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
-
 
         //Get view and draw on it
         //View shopView;
@@ -91,7 +95,7 @@ public class RouteActivity extends SceneParent {
        // int vHeight = view.getHeight();
 
         DrawOnScreen drawRoutre = new DrawOnScreen();
-        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
+        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
 
      //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
      //   mImageView.setImageBitmap(mBitmap);
