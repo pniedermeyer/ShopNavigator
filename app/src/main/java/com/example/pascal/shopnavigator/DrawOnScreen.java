@@ -128,11 +128,10 @@ public class DrawOnScreen extends SceneParent{
             //select next product x, y
             nextX = shortestPath[i][0];
             nextY = shortestPath[i][1];
-
-         //   System.out.println(nextX + "next" + nextY);
+System.out.println(nextX + " next " + nextY);
             //Find closest checkpoint to next product
             destinationCheckpoint = findClosestCheckpoint(nextX, nextY);
-
+System.out.println(destinationCheckpoint[0][0] + " dest " + destinationCheckpoint[0][1]);
             //Draw line from current checkpoint to closest checkpoint of new product.
             DrawLine(startX, startY, destinationCheckpoint[0][0], startY);
             DrawLine(destinationCheckpoint[0][0], startY, destinationCheckpoint[0][0], destinationCheckpoint[0][1]);
@@ -149,8 +148,8 @@ public class DrawOnScreen extends SceneParent{
     //Find the checkpoint closest to the given points
     public int [][] findClosestCheckpoint(int startX, int startY){
         int [][] destinationPoint = new int [1][2];
-        int distanceX = 100;
-        int distanceY = 100;
+        int distanceX = width;
+        int distanceY = height;
         int holdX = 0;
         int holdY = 0;
 
@@ -161,10 +160,18 @@ public class DrawOnScreen extends SceneParent{
             }
 
             if (Math.abs(startY - checkPoints[i][1]) < distanceY) {
-                distanceY = Math.abs(startX - checkPoints[i][1]);
+
+                distanceY = Math.abs(startY - checkPoints[i][1]);
                 holdY = checkPoints[i][1];
+
+                if (distanceX > width/2 && startY < 18) {
+                    holdY = 7;
+
+                }
+                System.out.println(checkPoints[i][1]);
             }
         }
+
         destinationPoint[0][0] = holdX;
         destinationPoint[0][1] = holdY;
         //destinationPoint = holdX;
