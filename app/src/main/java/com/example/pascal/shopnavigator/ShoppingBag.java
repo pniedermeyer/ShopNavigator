@@ -77,9 +77,13 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
     }
 
     public void goMap(View v) {
-        Intent intent = new Intent(ShoppingBag.this, RouteActivity.class);
-        intent.putExtra("shoppingList", (Serializable) shoppingList);
-        startActivity(intent);
+            if(!shoppingList.isEmpty()){
+                Intent intent = new Intent(ShoppingBag.this, RouteActivity.class);
+                intent.putExtra("shoppingList", (Serializable) shoppingList);
+                startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(),R.string.no_item_selected , Toast.LENGTH_SHORT).show();
+            }
 
 
     }

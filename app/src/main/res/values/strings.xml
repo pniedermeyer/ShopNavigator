@@ -7,6 +7,7 @@
     <string name="button_to_bag">Insert Shopping List</string>
     <string name="go_shopping_btn">Start</string>
     <string name="item_not_available">Item isn\'t available</string>
+    <string name="item_not_available">Please select at least one Item</string>
 
     <!--Contact page-->
 
