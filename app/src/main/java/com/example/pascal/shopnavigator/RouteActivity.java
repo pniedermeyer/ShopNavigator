@@ -76,17 +76,6 @@ public class RouteActivity extends SceneParent {
             coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
         }
         coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
-
-
-        //Get view and draw on it
-        //View shopView;
-
-        //DrawOnScreen drawRoutre = new DrawOnScreen();
-        //drawRoutre.startDrawing(coordinatesOfProducts, mImageView);
-
-
-
-
         mImageView.getViewTreeObserver().addOnGlobalLayoutListener(new MyGlobalListenerClass());
 
 
@@ -99,10 +88,11 @@ public class RouteActivity extends SceneParent {
             if(once == 0) {
                 once = 1;
                 View view = (View) findViewById(R.id.imageView2);
-//
+                width = view.getWidth();
+                height = view.getHeight();
 
                 DrawOnScreen drawRoutre = new DrawOnScreen();
-                drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
+                drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
             }
         }
     }
