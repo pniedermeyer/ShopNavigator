@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -47,12 +48,8 @@ public class RouteActivity extends SceneParent {
         products = databaseAccess.getCoordinates(shoppingList);
         databaseAccess.close();
 
-        ImageView img = (ImageView) findViewById( R.id.imageView);
+        View img = (View) findViewById( R.id.imageView);
         ImageView img2 = (ImageView) findViewById( R.id.imageView2);
-
-        img.requestLayout();
-        img2.requestLayout();
-        img2.getLayoutParams().width = img.getLayoutParams().width;
 
 
         //Text View
@@ -82,29 +79,12 @@ public class RouteActivity extends SceneParent {
 
         //DrawOnScreen drawRoutre = new DrawOnScreen();
         //drawRoutre.startDrawing(coordinatesOfProducts, mImageView);
-    }
 
-
-
-    public void drawSomething(View view) {
-       // int vWidth = view.getWidth();
-       // int vHeight = view.getHeight();
+        View view = (View) findViewById( R.id.imageView2);;
 
         DrawOnScreen drawRoutre = new DrawOnScreen();
         drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
 
-     //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
-     //   mImageView.setImageBitmap(mBitmap);
-     //   mCanvas = new Canvas(mBitmap);
-     //   mPaint.setStrokeWidth(20);
-     //   mPaint.setColor(
-     //           ResourcesCompat.getColor(getResources(),
-     //                   R.color.red, null)
-     //   );
-     //   mCanvas.drawText("Text", 100, 300, mPaintText);
-     //   mCanvas.drawLine(190, 1070, 190, 990, mPaint);
-
-     //   view.invalidate();
     }
 
 }
