@@ -1,5 +1,6 @@
 package com.example.pascal.shopnavigator;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,7 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,9 +59,6 @@ public class RouteActivity extends SceneParent {
         ImageView img2 = (ImageView) findViewById( R.id.imageView2);
 
 
-        //Text View
-        TextView helloTextView = (TextView) findViewById(R.id.textView4);
-        helloTextView.setText(Arrays.deepToString(products));
 
         //Test for Canvas
         mPaintText.setColor(
@@ -96,6 +96,11 @@ public class RouteActivity extends SceneParent {
                 drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
             }
         }
+    }
+
+    public void goHome(View v) {
+            Intent intent = new Intent(RouteActivity.this, MainActivity.class);
+            startActivity(intent);
     }
 
     public void drawSomething(View view) {

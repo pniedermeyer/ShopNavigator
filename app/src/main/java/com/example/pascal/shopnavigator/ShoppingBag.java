@@ -85,8 +85,6 @@ public class ShoppingBag extends SceneParent implements View.OnClickListener, Ad
             }else{
                 Toast.makeText(getApplicationContext(),R.string.no_item_selected , Toast.LENGTH_SHORT).show();
             }
-
-
     }
 
     public void addItem(View v){
