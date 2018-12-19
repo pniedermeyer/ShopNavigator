@@ -16,22 +16,33 @@ public class DrawOnScreen extends SceneParent{
     private Bitmap mBitmap;
     private ImageView mImageView;
     int width = 0, height = 0;
+    private int[][] shortestPath;
 
 
     //SetupCheckpoints;
     public void setPoints() {
+        int temp = 0;
         // Shelf points;
-        rowOfPoints(80,0,0,1);
-        rowOfPoints(40,1,8,1);
+        rowOfPoints(84,0,0,1);
+        rowOfPoints(78,1,8,1);
         rowOfPoints(25,9,16,1);
         rowOfPoints(20,17,20,1);
         rowOfPoints(15,21,25,4);
+
+        for (int i = 0; i < checkPoints.length; i++) {
+            // System.out.println(shortestPath[i][0] + " Befire "+ shortestPath[i][1]);
+            temp = ((width / 100) * checkPoints[i][0]);
+            checkPoints[i][0] = (int) temp;
+
+            temp = ((height / 100) * checkPoints[i][1]);
+            checkPoints[i][1] = (int) temp;
+        }
     }
 
     //Symatically build checkpoints
     public void rowOfPoints(int y, int start, int stop, int multiplier) {
         for (int i = start; i <= stop; i++) {
-            checkPoints[i][0] = 10*multiplier;
+            checkPoints[i][0] = 11*multiplier;
             checkPoints[i][1] = y;
             multiplier++;
         }
@@ -42,23 +53,22 @@ public class DrawOnScreen extends SceneParent{
     public void startDrawing(int [][] shortestPath, View shopView, ImageView mImageView, int width, int height) {
         this.width = width;
         this.height = height;
-        int vWidth = shopView.getWidth();
-        int vHeight = shopView.getHeight();
 
-        mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
+        mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         mImageView.setImageBitmap(mBitmap);
         canvas = new Canvas(mBitmap);
         paint.setStrokeWidth(20);
         paint.setColor(Color.RED);
        // DrawLine(0,0,2,2);
-
-        PrepareRoute(shortestPath);
+        this.shortestPath = shortestPath;
+        setPoints();
+        PrepareRoute();
 
         shopView.invalidate();
     }
 
     //Calculating and drawing the route
-    public void PrepareRoute(int [][] shortestPath) {
+    public void PrepareRoute() {
         double temp = 0;
         int [][] destinationCheckpoint = new int [1][2];
         int nextX = 0, nextY = 0, stopX = 0, stopY = 0, startX = 0, startY = 0;
@@ -69,23 +79,26 @@ public class DrawOnScreen extends SceneParent{
         //Set startposition to first checkpoint
         startX = checkPoints[1][0];
         startY = checkPoints[1][1];
+        //System.out.println(width +" scheipsj "+ height);
 
-        //Convert percent values to screen
+
+        //Convert percent values to screenvalue
         for (int i = 0; i < shortestPath.length; i++){
-            System.out.println(shortestPath[i][0] + " "+ shortestPath[i][1]);
+           // System.out.println(shortestPath[i][0] + " Befire "+ shortestPath[i][1]);
             temp = ((width / 100) * shortestPath[i][0]);
             shortestPath[i][0] = (int)temp;
 
             temp = ((height / 100) * shortestPath[i][1]);
             shortestPath[i][1] = (int)temp;
 
-            System.out.println(shortestPath[i][0] + " "+ shortestPath[i][1]);
+          //  System.out.println(shortestPath[i][0] + " "+ shortestPath[i][1]);
         }
 
         //Drawing the lines between the checkpoints
         for (int i = 1; i < shortestPath.length-1; i++) {
             nextX = shortestPath[i][0];
             nextY = shortestPath[i][1];
+         //   System.out.println(nextX + "next" + nextY);
             destinationCheckpoint = findClosestCheckpoint(nextX, nextY);
             DrawLine(startX, startY, destinationCheckpoint[0][0], startY);
             DrawLine(destinationCheckpoint[0][0], startY, destinationCheckpoint[0][0], destinationCheckpoint[0][1]);

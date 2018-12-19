@@ -24,7 +24,7 @@ public class Routing {
         shortestPath[0][0] = entranceX;
         shortestPath[0][1] = entranceY;
         shortestPath[shortestPath.length-1][0] = cashiersX;
-        shortestPath[shortestPath.length-1][1] = entranceY;
+        shortestPath[shortestPath.length-1][1] = cashiersY;
 
         for (int i = 0; i < gridPosition.length; i++) {
             for (int e = 0; e < gridPosition.length; e++) {
@@ -48,9 +48,9 @@ public class Routing {
                     }
 
                 current = marker;
-
+                totalDistance = 1000;
             }
-            totalDistance = 1000;
+
         return shortestPath;
     }
 }

@@ -76,6 +76,7 @@ public class RouteActivity extends SceneParent {
             coordinatesOfProducts[i][1] = Integer.valueOf(products[i][1]);
         }
         coordinatesOfProducts = Routing.calculateDistance(coordinatesOfProducts);
+
         mImageView.getViewTreeObserver().addOnGlobalLayoutListener(new MyGlobalListenerClass());
 
 
@@ -100,13 +101,13 @@ public class RouteActivity extends SceneParent {
     public void drawSomething(View view) {
         // int vWidth = view.getWidth();
         // int vHeight = view.getHeight();
-        View im = (View) findViewById(R.id.imageView);
+   //     View im = (View) findViewById(R.id.imageView);
 
-        System.out.println (view.getHeight() + " | " + view.getWidth());
-        System.out.println (im.getHeight() + " | " + im.getWidth());
+    //    System.out.println (view.getHeight() + " | " + view.getWidth());
+     //   System.out.println (im.getHeight() + " | " + im.getWidth());
 
-        DrawOnScreen drawRoutre = new DrawOnScreen();
-        drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
+     //   DrawOnScreen drawRoutre = new DrawOnScreen();
+     //   drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
 
         //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
         //   mImageView.setImageBitmap(mBitmap);
