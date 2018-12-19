@@ -45,6 +45,7 @@ public class MainActivity extends SceneParent implements View.OnClickListener {
         //Button to next View
         Button button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(this);
+
     }
 
 

@@ -3,19 +3,26 @@ package com.example.pascal.shopnavigator;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 import android.support.v4.content.res.ResourcesCompat;
+import android.view.*;
 
-public class DrawOnScreen extends SceneParent{
+import java.sql.SQLOutput;
+
+
+public class DrawOnScreen extends SceneParent {
     //Variables
     private Paint paint = new Paint();
+    private Paint paintBlue = new Paint();
     private int[][] checkPoints = new int[26][2];
     private Canvas canvas = new Canvas();
     private Bitmap mBitmap;
     private ImageView mImageView;
     private int width = 0, height = 0;
+    private float[] lastTouchDownXY = new float[2];
 
 
     //SetupCheckpoints;
@@ -95,7 +102,9 @@ public class DrawOnScreen extends SceneParent{
         mImageView.setImageBitmap(mBitmap);
         canvas = new Canvas(mBitmap);
         paint.setStrokeWidth(17);
-        paint.setColor(Color.RED);
+        paint.setColor(Color.rgb(231,31,100));
+        paintBlue.setStrokeWidth(17);
+        paintBlue.setColor(Color.rgb(0,160,231));
 
         setPoints();
         PrepareRoute(shortestPath);
@@ -111,6 +120,7 @@ public class DrawOnScreen extends SceneParent{
 
         //Draw start-line
         DrawLine(checkPoints[0][0], checkPoints[0][1], checkPoints[1][0], checkPoints[1][1]);
+        canvas.drawCircle(checkPoints[1][0], checkPoints[1][1], 8, paint);
 
         //Set startposition to first checkpoint
         startX = checkPoints[1][0];
@@ -128,13 +138,18 @@ public class DrawOnScreen extends SceneParent{
             //select next product x, y
             nextX = shortestPath[i][0];
             nextY = shortestPath[i][1];
-System.out.println(nextX + " next " + nextY);
+//System.out.println(nextX + " next " + nextY);
             //Find closest checkpoint to next product
             destinationCheckpoint = findClosestCheckpoint(nextX, nextY);
-System.out.println(destinationCheckpoint[0][0] + " dest " + destinationCheckpoint[0][1]);
+//System.out.println(destinationCheckpoint[0][0] + " dest " + destinationCheckpoint[0][1]);
             //Draw line from current checkpoint to closest checkpoint of new product.
             DrawLine(startX, startY, destinationCheckpoint[0][0], startY);
+            canvas.drawCircle(destinationCheckpoint[0][0], startY, 8, paint);
+            canvas.drawCircle(destinationCheckpoint[0][0], destinationCheckpoint[0][1], 8, paint);
             DrawLine(destinationCheckpoint[0][0], startY, destinationCheckpoint[0][0], destinationCheckpoint[0][1]);
+            //Draw line from current checkpoint to product on the y axis
+            DrawLine(destinationCheckpoint[0][0], startY, destinationCheckpoint[0][0], nextY);
+
             startX = destinationCheckpoint[0][0];
             startY = destinationCheckpoint[0][1];
         }
@@ -168,7 +183,7 @@ System.out.println(destinationCheckpoint[0][0] + " dest " + destinationCheckpoin
                     holdY = 7;
 
                 }
-                System.out.println(checkPoints[i][1]);
+               // System.out.println(checkPoints[i][1]);
             }
         }
 
@@ -178,5 +193,15 @@ System.out.println(destinationCheckpoint[0][0] + " dest " + destinationCheckpoin
 
         return destinationPoint;
     }
+
+
+    //OnTouchListener
+    public void touchEvent(float x, float y){
+        int intX = 0, intY = 0;
+        intX = (int) x;
+        intY = (int) y;
+    }
+
+
 
 }
