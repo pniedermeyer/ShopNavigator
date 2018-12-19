@@ -48,7 +48,7 @@ public class DrawOnScreen extends SceneParent{
         canvas = new Canvas(mBitmap);
         paint.setStrokeWidth(20);
         paint.setColor(Color.RED);
-        DrawLine(0,0,200,200);
+        DrawLine(0,0,2,2);
         shopView.invalidate();
         PrepareRoute(shortestPath);
 
