@@ -66,9 +66,9 @@ public class DrawOnScreen extends SceneParent {
         checkPoints = percentValueToScreenValue(checkPoints);
 
         //Draw Test line
-        //for (int i = 0; i < checkPoints.length-1; i++) {
-        //    DrawLine(checkPoints[i][0], checkPoints[i][1], checkPoints[i + 1][0], checkPoints[i + 1][1]);
-        //}
+     //   for (int i = 0; i < checkPoints.length-1; i++) {
+     //       DrawLine(checkPoints[i][0], checkPoints[i][1], checkPoints[i + 1][0], checkPoints[i + 1][1]);
+     //   }
     }
 
 
@@ -179,11 +179,11 @@ public class DrawOnScreen extends SceneParent {
                 distanceY = Math.abs(startY - checkPoints[i][1]);
                 holdY = checkPoints[i][1];
 
-                if (distanceX > width/2 && startY < 18) {
-                    holdY = 7;
+                if (startX > (width/2) && startY < (height/100*18)) {
+                    holdY = (height/100*7);
 
                 }
-               // System.out.println(checkPoints[i][1]);
+                //System.out.println(checkPoints[i][1]);
             }
         }
 
@@ -196,10 +196,23 @@ public class DrawOnScreen extends SceneParent {
 
 
     //OnTouchListener
-    public void touchEvent(float x, float y){
+    public void touchEvent(float x, float y,int [][] products){
         int intX = 0, intY = 0;
         intX = (int) x;
         intY = (int) y;
+
+        //Check if variables are close to products
+        for (int i = 0; i < products.length; i++) {
+            for(int e = 0; i < 25; e++) {
+                if ((intX + e) < products[i][0]) {
+                    //ChangeColor of Dot;
+                }
+                if ((intX - e) > products[i][0]) {
+                    //ChangeColor of Dot;
+                }
+            }
+
+        }
     }
 
 

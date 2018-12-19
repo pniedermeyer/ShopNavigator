@@ -108,7 +108,7 @@ public class RouteActivity extends SceneParent implements View.OnClickListener{
             float x = lastTouchDownXY[0];
             float y = lastTouchDownXY[1];
 
-            drawRoute.touchEvent(x, y);
+            drawRoute.touchEvent(x, y, coordinatesOfProducts);
         }
     };
 
