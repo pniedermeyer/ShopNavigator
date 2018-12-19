@@ -9,6 +9,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -31,6 +32,8 @@ public class RouteActivity extends SceneParent {
     private Paint mPaintText = new Paint(Paint.UNDERLINE_TEXT_FLAG);
     private Bitmap mBitmap;
     private ImageView mImageView;
+
+    private int once = 0;
 
 
 
@@ -80,11 +83,55 @@ public class RouteActivity extends SceneParent {
         //DrawOnScreen drawRoutre = new DrawOnScreen();
         //drawRoutre.startDrawing(coordinatesOfProducts, mImageView);
 
-        View view = (View) findViewById( R.id.imageView2);;
+
+
+
+        mImageView.getViewTreeObserver().addOnGlobalLayoutListener(new MyGlobalListenerClass());
+
+
+    }
+
+    //Declare the layout listener
+    class MyGlobalListenerClass implements ViewTreeObserver.OnGlobalLayoutListener {
+        @Override
+        public void onGlobalLayout() {
+            if(once == 0) {
+                once = 1;
+                View view = (View) findViewById(R.id.imageView2);
+//                View im = (View) findViewById(R.id.imageView);
+//                System.out.println("_--------");
+//                System.out.println(view.getHeight() + " | " + view.getWidth());
+//                System.out.println(im.getHeight() + " | " + im.getWidth());
+
+
+                DrawOnScreen drawRoutre = new DrawOnScreen();
+                drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
+            }
+        }
+    }
+
+    public void drawSomething(View view) {
+        // int vWidth = view.getWidth();
+        // int vHeight = view.getHeight();
+        View im = (View) findViewById(R.id.imageView);
+
+        System.out.println (view.getHeight() + " | " + view.getWidth());
+        System.out.println (im.getHeight() + " | " + im.getWidth());
 
         DrawOnScreen drawRoutre = new DrawOnScreen();
         drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView);
 
-    }
+        //   mBitmap = Bitmap.createBitmap(vWidth, vHeight, Bitmap.Config.ARGB_8888);
+        //   mImageView.setImageBitmap(mBitmap);
+        //   mCanvas = new Canvas(mBitmap);
+        //   mPaint.setStrokeWidth(20);
+        //   mPaint.setColor(
+        //           ResourcesCompat.getColor(getResources(),
+        //                   R.color.red, null)
+        //   );
+        //   mCanvas.drawText("Text", 100, 300, mPaintText);
+        //   mCanvas.drawLine(190, 1070, 190, 990, mPaint);
 
+        //   view.invalidate();
+    }
 }
