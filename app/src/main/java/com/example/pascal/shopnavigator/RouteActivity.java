@@ -21,13 +21,16 @@ import java.io.Serializable;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
+import android.view.*;
 
 public class RouteActivity extends SceneParent {
-
+    DrawOnScreen drawRoute = new DrawOnScreen();
     ArrayList<String> shoppingList;
 
     String [][] products;
     int[][] coordinatesOfProducts;
+
+    private float[] lastTouchDownXY = new float[2];
 
     //Test Canvas
     private Canvas mCanvas;
@@ -38,8 +41,6 @@ public class RouteActivity extends SceneParent {
     int width = 0, height = 0;
 
     private int once = 0;
-
-
 
 
     @Override
@@ -80,7 +81,37 @@ public class RouteActivity extends SceneParent {
         mImageView.getViewTreeObserver().addOnGlobalLayoutListener(new MyGlobalListenerClass());
 
 
+        mImageView.setOnTouchListener(touchListener);
+        mImageView.setOnClickListener(clickListener);
     }
+
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            // save the X,Y coordinates
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                lastTouchDownXY[0] = event.getX();
+                lastTouchDownXY[1] = event.getY();
+
+            }
+
+            // let the touch event pass on to whoever needs it
+            return false;
+        }
+    };
+
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // retrieve the stored coordinates
+            float x = lastTouchDownXY[0];
+            float y = lastTouchDownXY[1];
+            drawRoute.touchEvent(x, y, coordinatesOfProducts);
+        }
+    };
+
+
 
     //Declare the layout listener
     class MyGlobalListenerClass implements ViewTreeObserver.OnGlobalLayoutListener {
@@ -92,8 +123,8 @@ public class RouteActivity extends SceneParent {
                 width = view.getWidth();
                 height = view.getHeight();
 
-                DrawOnScreen drawRoutre = new DrawOnScreen();
-                drawRoutre.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
+
+                drawRoute.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
             }
         }
     }
