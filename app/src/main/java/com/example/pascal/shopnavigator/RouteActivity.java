@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import android.view.*;
 
-public class RouteActivity extends SceneParent implements View.OnClickListener{
+public class RouteActivity extends SceneParent {
     DrawOnScreen drawRoute = new DrawOnScreen();
     ArrayList<String> shoppingList;
 
@@ -81,25 +81,25 @@ public class RouteActivity extends SceneParent implements View.OnClickListener{
         mImageView.getViewTreeObserver().addOnGlobalLayoutListener(new MyGlobalListenerClass());
 
 
-        //mImageView.setOnTouchListener(onTouchListener);
+        mImageView.setOnTouchListener(touchListener);
         mImageView.setOnClickListener(clickListener);
-
     }
 
- //   View.OnTouchListener touchListener = new View.OnTouchListener() {
-    //    @Override
-    //    public boolean onTouch(View v, MotionEvent event) {
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
 
             // save the X,Y coordinates
-       //     if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-       //         lastTouchDownXY[0] = event.getX();
-       //         lastTouchDownXY[1] = event.getY();
-      //      }
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                lastTouchDownXY[0] = event.getX();
+                lastTouchDownXY[1] = event.getY();
+
+            }
 
             // let the touch event pass on to whoever needs it
-     //       return false;
-    //    }
-  //  };
+            return false;
+        }
+    };
 
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
@@ -107,15 +107,10 @@ public class RouteActivity extends SceneParent implements View.OnClickListener{
             // retrieve the stored coordinates
             float x = lastTouchDownXY[0];
             float y = lastTouchDownXY[1];
-
             drawRoute.touchEvent(x, y, coordinatesOfProducts);
         }
     };
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
 
     //Declare the layout listener
