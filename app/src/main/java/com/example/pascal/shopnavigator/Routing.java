@@ -20,7 +20,10 @@ public class Routing {
             shortestPath[i][1] = 2000;
         }
 
-        //Start and End value (Entrance and Cashiers) are static and will be added automatically;
+        /* Starting from the Entrance the method will search the closest product to the entrance
+           and add it to the shortestPath. Afterwards it will search for the closest product to
+           the position of the last product and so on.
+        //Start and End value (Entrance and Cashiers) are static and will be added automatically; */
         shortestPath[0][0] = entranceX;
         shortestPath[0][1] = entranceY;
         shortestPath[shortestPath.length-1][0] = cashiersX;
@@ -30,8 +33,6 @@ public class Routing {
             for (int e = 0; e < gridPosition.length; e++) {
                 if(current != i) {
                     temp = (Math.abs(shortestPath[e][0] - gridPosition[current][0]) + Math.abs(shortestPath[e][1] - gridPosition[current][1]));
-                } else {
-
                 }
 
                 if (temp <= totalDistance) {

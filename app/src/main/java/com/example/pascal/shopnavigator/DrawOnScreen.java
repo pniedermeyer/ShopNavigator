@@ -68,9 +68,9 @@ public class DrawOnScreen extends SceneParent {
         checkPoints = percentValueToScreenValue(checkPoints);
 
         //Draw Test line
-     //   for (int i = 0; i < checkPoints.length-1; i++) {
-     //       DrawLine(checkPoints[i][0], checkPoints[i][1], checkPoints[i + 1][0], checkPoints[i + 1][1]);
-     //   }
+//        for (int i = 0; i < checkPoints.length-1; i++) {
+//            DrawLine(checkPoints[i][0], checkPoints[i][1], checkPoints[i + 1][0], checkPoints[i + 1][1]);
+//        }
     }
 
 
@@ -181,7 +181,7 @@ public class DrawOnScreen extends SceneParent {
         }
     }
 
-    //Draws line
+    //Draws red line
     private void DrawLine(int startX, int startY, int stopX, int stopY) {
         canvas.drawLine(startX, startY, stopX, stopY, paint);
     }
@@ -227,6 +227,8 @@ public class DrawOnScreen extends SceneParent {
 
 
     //OnTouchListener
+    // If the screen is pressed the method checks wether the user pressed the next product in order
+    // and calls the RedrawRoute method
     public void touchEvent(float x, float y,int [][] products){
         boolean check = false;
         int intX = 0, intY = 0;
@@ -234,15 +236,17 @@ public class DrawOnScreen extends SceneParent {
         intY = (int) y;
 
         //Check if variables are close to products
-
-                if ((intX + 30) > products[counter][0] && (intX - 30) < products[counter][0] ) {
-                    if((intY + 30) > products[counter][1] && (intY - 30) < products[counter][1]) {
+            if(counter < products.length) {
+                if ((intX + 30) > products[counter][0] && (intX - 30) < products[counter][0]) {
+                    if ((intY + 30) > products[counter][1] && (intY - 30) < products[counter][1]) {
                         RedrawRoute(products);
                     }
                 }
-
+            }
     }
 
+    // This method draws a blue line starting from the entrance to the first product/checkpoint.
+    // Afterwards the blue line will be drawn from the last product to the next product in order.
     private void RedrawRoute(int redraw[][]) {
         double temp = 0;
         int [][] destinationCheckpoint = new int [1][2];
@@ -297,7 +301,7 @@ public class DrawOnScreen extends SceneParent {
                 canvas.drawCircle(checkPoints[21][0], checkPoints[21][1], 8, paintBlue);
             }
 
-
+            //Little circels will be drawn at the checkpoints to get round edges.
             DrawLineBlue(startX, startY, destinationCheckpoint[0][0], startY);
             canvas.drawCircle(destinationCheckpoint[0][0], startY, 8, paintBlue);
             canvas.drawCircle(destinationCheckpoint[0][0], destinationCheckpoint[0][1], 8, paintBlue);
