@@ -123,6 +123,11 @@ public class RouteActivity extends SceneParent {
                 width = view.getWidth();
                 height = view.getHeight();
 
+                System.out.println(width + "jh" + height);
+
+                View view2 = (View) findViewById(R.id.imageView);
+                System.out.println(view2.getWidth() + "asdf" + view2.getHeight());
+
 
                 drawRoute.startDrawing(coordinatesOfProducts, view, mImageView, width, height);
             }

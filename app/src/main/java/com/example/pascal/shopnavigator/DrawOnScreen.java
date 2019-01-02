@@ -29,18 +29,21 @@ public class DrawOnScreen extends SceneParent {
 
     //SetupCheckpoints;
     private void setPoints() {
-        int [] xCoordinates = new int [8];
+        //int [] xCoordinates = new int [8];
         int [] yCoordinates = new int [6];
 
         //Initialize arrays
-        xCoordinates [0] = 11;
 
-        for (int i = 1; i < 8; i++) {
-            xCoordinates [i] = 24 + 12*(i-1);
-        }
+        int [] xCoordinates = new int[]{10, 23, 35, 46, 57, 68, 79, 91};
+        //xCoordinates [0] = 11;
 
-        yCoordinates [0] = 84;
-        yCoordinates [1] = 78;
+
+        //for (int i = 1; i < 8; i++) {
+        //    xCoordinates [i] = 20 + 12*(i-1);
+        //}
+
+        yCoordinates [0] = 85;
+        yCoordinates [1] = 80;
         yCoordinates [2] = 42;
         yCoordinates [3] = 12;
         yCoordinates [4] = 7;

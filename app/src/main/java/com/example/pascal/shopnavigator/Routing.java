@@ -13,7 +13,7 @@ public class Routing {
         final int entranceX = 10;
         final int entranceY = 80;
         final int cashiersX = 55;
-        final int cashiersY = 80;
+        final int cashiersY = 85;
 
         for (int i = 0; i < shortestPath.length; i++) {
             shortestPath[i][0] = 1000;
